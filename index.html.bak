@@ -8,19 +8,6 @@
   <script>
     tailwind.config = {
       darkMode: 'class',
-      theme: {
-        extend: {
-          animation: {
-            'fade-slide': 'fadeSlide 0.4s ease-out both',
-          },
-          keyframes: {
-            fadeSlide: {
-              '0%': { opacity: '0', transform: 'translateY(10px)' },
-              '100%': { opacity: '1', transform: 'translateY(0)' },
-            },
-          },
-        }
-      }
     };
   </script>
 </head>
@@ -29,12 +16,11 @@
 
     <header class="mb-4">
       <h1 class="text-4xl font-bold text-white mb-2">🛡️ Incident Response Tabletop</h1>
-      <h2 id="scenario-title" class="text-xl font-semibold text-gray-300 mt-2 hidden opacity-0"></h2>
-      <h3 id="stage-title" class="text-lg font-medium text-gray-400 mt-1 hidden opacity-0"></h3>
-      <p id="header-description" class="text-gray-400 text-lg max-w-3xl">
+      <p class="text-gray-400 text-lg max-w-3xl">
         Run realistic tabletop scenarios to test your team’s incident response capabilities. Select your role to begin.
       </p>
 
+      <!-- Progress bar -->
       <div id="progress-container" class="w-full mt-6 mb-4 hidden">
         <div class="flex justify-between items-center mb-1 text-sm text-gray-300">
           <span id="progress-label">Stage 0 of 0</span>
@@ -44,6 +30,7 @@
         </div>
       </div>
 
+      <!-- Role selection -->
       <div id="mode-selection" class="mt-10 space-y-4">
         <p class="text-lg text-gray-200 font-semibold mb-2">Choose your role:</p>
         <div class="flex gap-4">
@@ -59,7 +46,9 @@
       </div>
     </header>
 
-    <main id="main-content" class="flex-grow mt-10 space-y-4"></main>
+    <main id="main-content" class="flex-grow mt-10 space-y-4">
+      <!-- Scenario list loads here -->
+    </main>
 
     <footer class="flex justify-between mt-6">
       <button id="prev-btn" onclick="goToPreviousStage()" class="px-4 py-2 bg-gray-700 text-white rounded hidden">← Previous</button>

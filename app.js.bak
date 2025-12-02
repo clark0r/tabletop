@@ -2,7 +2,6 @@ let currentScenario = null;
 let currentStage = 0;
 let isFacilitator = false;
 let revealedInjects = 0;
-let userResponses = [];
 
 const mainContent = document.getElementById('main-content');
 const prevBtn = document.getElementById('prev-btn');
@@ -11,9 +10,6 @@ const homeBtn = document.getElementById('home-btn');
 const progressContainer = document.getElementById('progress-container');
 const progressBar = document.getElementById('progress-bar');
 const progressLabel = document.getElementById('progress-label');
-const scenarioTitleElement = document.getElementById('scenario-title');
-const stageTitleElement = document.getElementById('stage-title');
-const headerDescription = document.getElementById('header-description');
 
 function selectMode(mode) {
   isFacilitator = (mode === 'facilitator');
@@ -42,24 +38,12 @@ async function loadScenario(file) {
   const res = await fetch(`scenarios/${file}`);
   currentScenario = await res.json();
   currentStage = -1;
-  userResponses = [];
   showIntro();
   hideProgressBar();
 }
 
 function showIntro() {
   const s = currentScenario;
-
-  scenarioTitleElement.textContent = s.title;
-  scenarioTitleElement.classList.remove('hidden', 'opacity-0');
-  scenarioTitleElement.classList.add('animate-fade-slide');
-
-  stageTitleElement.textContent = '';
-  stageTitleElement.classList.add('hidden');
-  stageTitleElement.classList.remove('animate-fade-slide');
-
-  headerDescription.classList.add('hidden');
-
   mainContent.innerHTML = `
     <h2 class="text-2xl font-bold mb-4">${s.title}</h2>
     <p class="mb-4 text-gray-300 whitespace-pre-line">${s.narrative_intro}</p>
@@ -76,6 +60,7 @@ function showIntro() {
   nextBtn.classList.remove('bg-blue-600', 'bg-purple-600');
   nextBtn.classList.add('bg-green-600');
   homeBtn.classList.remove('hidden');
+  hideProgressBar();
 }
 
 function startScenario() {
@@ -87,18 +72,10 @@ function startScenario() {
 function renderStage() {
   const stage = currentScenario.stages[currentStage];
   const injectCount = stage.injects ? stage.injects.length : 0;
-  revealedInjects = Math.min(revealedInjects, injectCount);
+  revealedInjects = 0;
 
   showProgressBar();
   updateProgressBar();
-
-  scenarioTitleElement.textContent = currentScenario.title;
-  scenarioTitleElement.classList.remove('hidden', 'opacity-0');
-  scenarioTitleElement.classList.add('animate-fade-slide');
-
-  stageTitleElement.textContent = stage.title || '';
-  stageTitleElement.classList.remove('hidden', 'opacity-0');
-  stageTitleElement.classList.add('animate-fade-slide');
 
   let html = `
     <div>
@@ -115,7 +92,7 @@ function renderStage() {
     html += `
       <div class="mb-4">
         <h3 class="font-bold">Injects:</h3>
-        <ul class="list-disc list-inside text-red-400 space-y-2">
+        <ul class="list-disc list-inside text-red-400">
           ${stage.injects?.map(i => `<li>${i}</li>`).join('') || '<li>None</li>'}
         </ul>
       </div>
@@ -124,21 +101,13 @@ function renderStage() {
     html += `
       <div class="mb-4">
         <h3 class="font-bold">Injects:</h3>
-        <ul id="inject-list" class="list-disc list-inside text-red-400 space-y-2">
-          ${injectCount > 0
-            ? stage.injects.slice(0, revealedInjects).map(i => `<li>${i}</li>`).join('')
-            : '<li>No injects in this stage.</li>'}
+        <ul id="inject-list" class="list-disc list-inside text-red-400">
+          ${stage.injects?.slice(0, revealedInjects).map(i => `<li>${i}</li>`).join('') || '<li>No injects</li>'}
         </ul>
-        ${injectCount > 0 && revealedInjects < injectCount
+        ${revealedInjects < injectCount
           ? `<button onclick="revealNextInject()" class="mt-2 px-4 py-2 bg-red-600 text-white rounded">Reveal Next Inject</button>`
           : ''
         }
-      </div>
-
-      <div class="mt-6">
-        <label for="response" class="block font-semibold mb-2">Your response / decision:</label>
-        <textarea id="response" rows="4" class="w-full bg-gray-800 text-white border border-gray-600 rounded p-2"
-          placeholder="What would your team do at this stage?">${userResponses[currentStage] || ''}</textarea>
       </div>
     `;
   }
@@ -166,8 +135,8 @@ function renderStage() {
     nextBtn.disabled = revealedInjects < injectCount;
   }
 
-  nextBtn.classList.remove('hidden');
-  nextBtn.textContent = (currentStage >= currentScenario.stages.length - 1) ? 'Finish ✔️' : 'Next →';
+  nextBtn.classList.toggle('hidden', currentStage >= currentScenario.stages.length - 1);
+  nextBtn.textContent = 'Next →';
   nextBtn.classList.remove('bg-green-600');
   nextBtn.classList.add(isFacilitator ? 'bg-purple-600' : 'bg-blue-600');
 }
@@ -177,27 +146,8 @@ function revealNextInject() {
   const injectCount = stage.injects ? stage.injects.length : 0;
 
   if (revealedInjects < injectCount) {
-    setTimeout(() => {
-      revealedInjects++;
-      renderStage();
-      animateNewInject();
-    }, 250);
-  }
-}
-
-function animateNewInject() {
-  const injectList = document.getElementById('inject-list');
-  if (!injectList) return;
-  const items = injectList.querySelectorAll('li');
-  if (items.length === 0) return;
-  const lastItem = items[items.length - 1];
-  lastItem.classList.add('animate-fade-slide');
-}
-
-function saveUserResponse() {
-  const responseField = document.getElementById('response');
-  if (responseField) {
-    userResponses[currentStage] = responseField.value.trim();
+    revealedInjects++;
+    renderStage();
   }
 }
 
@@ -207,20 +157,14 @@ function goToNextStage() {
     return;
   }
 
-  saveUserResponse();
-
   if (currentStage < currentScenario.stages.length - 1) {
     currentStage++;
     revealedInjects = 0;
     renderStage();
-  } else {
-    saveUserResponse();
-    setTimeout(showReport, 300);
   }
 }
 
 function goToPreviousStage() {
-  saveUserResponse();
   if (currentStage > 0) {
     currentStage--;
     revealedInjects = 0;
@@ -232,19 +176,12 @@ function goHome() {
   currentScenario = null;
   currentStage = 0;
   revealedInjects = 0;
-  userResponses = [];
   document.getElementById('mode-selection').classList.remove('hidden');
   mainContent.innerHTML = '';
   prevBtn.classList.add('hidden');
   nextBtn.classList.add('hidden');
   homeBtn.classList.add('hidden');
   hideProgressBar();
-
-  scenarioTitleElement.textContent = '';
-  scenarioTitleElement.classList.add('hidden');
-  stageTitleElement.textContent = '';
-  stageTitleElement.classList.add('hidden');
-  headerDescription.classList.remove('hidden');
 }
 
 function updateProgressBar() {
@@ -267,69 +204,7 @@ function hideProgressBar() {
   progressLabel.textContent = '';
 }
 
-function showReport() {
-  scenarioTitleElement.textContent = currentScenario.title;
-  stageTitleElement.textContent = 'Scenario Report';
-
-  hideProgressBar();
-  nextBtn.classList.add('hidden');
-  prevBtn.classList.add('hidden');
-  homeBtn.classList.remove('hidden');
-
-  let html = `<div class="space-y-8">
-  <h2 class="text-3xl font-bold mb-6 text-white">${currentScenario.title} — Report</h2>
-  <p class="text-gray-300 mb-4">This report includes the narrative of each phase and the decisions made by your team during the exercise.</p>
-  `;
-
-  currentScenario.stages.forEach((stage, i) => {
-    const userResponse = userResponses[i] || '<em>No response entered</em>';
-    html += `
-      <div class="p-4 bg-gray-800 border border-gray-700 rounded">
-        <h3 class="text-xl font-semibold text-blue-300 mb-2">Stage ${i + 1}: ${stage.title}</h3>
-        <p class="mb-2 text-gray-300"><strong>Scenario Narrative:</strong></p>
-        <div class="mb-4 text-gray-200 whitespace-pre-line">${stage.narrative}</div>
-        <p class="mb-2 text-gray-300"><strong>Prompts for Consideration:</strong></p>
-        <ul class="list-disc list-inside text-gray-400 mb-4">
-          ${stage.prompts.map(p => `<li>${p}</li>`).join('')}
-        </ul>
-        <p class="text-gray-300 mb-1"><strong>Team Response:</strong></p>
-        <div class="whitespace-pre-wrap text-white bg-gray-900 p-2 rounded border border-gray-700">${userResponse}</div>
-      </div>
-    `;
-  });
-
-  html += `
-    <div class="mt-10 flex gap-4">
-      <button onclick="copyReport()" class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded">📋 Copy Report</button>
-      <button onclick="goHome()" class="px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded">🏠 Return Home</button>
-    </div>
-  </div>`;
-
-  mainContent.innerHTML = html;
-}
-
-function copyReport() {
-  const tmp = document.createElement('textarea');
-  tmp.style.position = 'absolute';
-  tmp.style.left = '-9999px';
-
-  let text = `Scenario: ${currentScenario.title}\n\n`;
-
-  currentScenario.stages.forEach((stage, i) => {
-    text += `Stage ${i + 1}: ${stage.title}\n`;
-    text += `Narrative:\n${stage.narrative}\n\n`;
-    text += `Prompts:\n${stage.prompts.map(p => `- ${p}`).join('\n')}\n\n`;
-    text += `Response:\n${userResponses[i] || '[No response]'}\n\n`;
-  });
-
-  tmp.value = text;
-  document.body.appendChild(tmp);
-  tmp.select();
-  document.execCommand('copy');
-  document.body.removeChild(tmp);
-  alert('Report copied to clipboard!');
-}
-
+// Expose functions for HTML onclick
 window.selectMode = selectMode;
 window.goToNextStage = goToNextStage;
 window.goToPreviousStage = goToPreviousStage;
