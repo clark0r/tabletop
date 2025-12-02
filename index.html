@@ -11,14 +11,17 @@
     };
   </script>
 </head>
-<body class="bg-gray-900 text-gray-100">
-  <div class="max-w-4xl mx-auto p-6 min-h-screen flex flex-col justify-between">
+<body class="bg-gray-900 text-gray-100 font-sans">
+  <div class="max-w-5xl mx-auto p-6 min-h-screen flex flex-col justify-between">
 
-    <header>
-      <h1 class="text-3xl font-bold mb-4 text-white">Incident Response Tabletop</h1>
+    <header class="mb-4">
+      <h1 class="text-4xl font-bold text-white mb-2">🛡️ Incident Response Tabletop</h1>
+      <p class="text-gray-400 text-lg max-w-3xl">
+        Run realistic tabletop scenarios to test your team’s incident response capabilities. Select your role to begin.
+      </p>
 
       <!-- Progress bar -->
-      <div id="progress-container" class="w-full mb-4 hidden">
+      <div id="progress-container" class="w-full mt-6 mb-4 hidden">
         <div class="flex justify-between items-center mb-1 text-sm text-gray-300">
           <span id="progress-label">Stage 0 of 0</span>
         </div>
@@ -28,15 +31,23 @@
       </div>
 
       <!-- Role selection -->
-      <div id="mode-selection" class="mt-4 space-y-2">
-        <p class="text-gray-200">Select your role:</p>
-        <button onclick="selectMode('participant')" class="px-4 py-2 bg-blue-600 text-white rounded">Participant</button>
-        <button onclick="selectMode('facilitator')" class="px-4 py-2 bg-purple-600 text-white rounded">Facilitator</button>
+      <div id="mode-selection" class="mt-10 space-y-4">
+        <p class="text-lg text-gray-200 font-semibold mb-2">Choose your role:</p>
+        <div class="flex gap-4">
+          <button onclick="selectMode('participant')"
+                  class="flex-1 px-6 py-3 text-lg font-semibold bg-blue-600 hover:bg-blue-500 text-white rounded transition">
+            👤 Participant
+          </button>
+          <button onclick="selectMode('facilitator')"
+                  class="flex-1 px-6 py-3 text-lg font-semibold bg-purple-600 hover:bg-purple-500 text-white rounded transition">
+            🧑‍🏫 Facilitator
+          </button>
+        </div>
       </div>
     </header>
 
-    <main id="main-content" class="flex-grow mt-6 space-y-4">
-      <!-- Scenario content will load here -->
+    <main id="main-content" class="flex-grow mt-10 space-y-4">
+      <!-- Scenario list loads here -->
     </main>
 
     <footer class="flex justify-between mt-6">
