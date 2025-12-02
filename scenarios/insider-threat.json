@@ -1,0 +1,120 @@
+{
+  "tabletop": "Insider Threat & Data Exfiltration",
+  "title": "Insider Threat & Data Exfiltration",
+  "description": "A trusted employee exfiltrates sensitive data, raising questions of detection, response, and internal trust.",
+  "objectives": "Identify insider risk, protect sensitive information, manage internal morale, and fulfill legal/regulatory obligations.",
+  "participants": [
+    "CISO",
+    "HR Director",
+    "General Counsel",
+    "CEO",
+    "VP of Engineering",
+    "Internal Communications Lead",
+    "Head of Security Operations"
+  ],
+  "narrative_intro": "A departing employee had access to critical product documentation, internal tools, and customer data. The person left amicably — no red flags, no exit interview issues. But three weeks after their last day, a competitor launches a product with striking similarities to your roadmap.\n\nAt first, it seems like a coincidence. But then someone notices file download activity from the former employee’s account on their last day — hundreds of PDFs and spreadsheets. An internal ticket reveals a late-terminated GitHub access token. The competitor's blog post uses phrasing from a confidential whitepaper.\n\nLegal, HR, and Security must collaborate — quickly — to investigate what happened, determine the exposure, and consider options. This exercise explores insider risk, employee lifecycle controls, and balancing legal action with company culture.",
+  "stages": [
+    {
+      "narrative": "🕒 9:00 AM: Engineer flags similarity between a competitor’s new feature and your unreleased roadmap.",
+      "prompts": [
+        "Is this worth escalating?",
+        "How do you validate the concern?",
+        "Do you involve security or legal yet?"
+      ],
+      "injects": [
+        "Competitor blog uses phrasing found in internal whitepaper.",
+        "The employee left 3 weeks ago on good terms.",
+        "You had no NDA breach history with this individual."
+      ],
+      "facilitator": {
+        "notes": "Encourage validation before panic. Watch for defensive HR/legal postures.",
+        "scoring": "✓ Escalated with evidence.\n✓ Involved appropriate stakeholders.\n✗ Dismissed due to lack of malice."
+      }
+    },
+    {
+      "narrative": "🕒 10:00 AM: Audit logs show ~200 file downloads on the employee’s last day. All to a personal device.",
+      "prompts": [
+        "What controls should have caught this?",
+        "Do you notify leadership now?",
+        "How do you preserve evidence?"
+      ],
+      "injects": [
+        "Logs are about to expire (retention limit).",
+        "Employee used Box and internal GitHub.",
+        "A GitHub token was never revoked."
+      ],
+      "facilitator": {
+        "notes": "Push for urgency on log retention. Identify gaps in offboarding process.",
+        "scoring": "✓ Logs preserved immediately.\n✓ Access tokens disabled.\n✗ No forensic action taken."
+      }
+    },
+    {
+      "narrative": "🕒 11:15 AM: HR confirms employee left with no exit concerns. Legal suggests checking NDA scope.",
+      "prompts": [
+        "Does this trigger an investigation?",
+        "Do you notify the ex-employee?",
+        "Do you consider civil legal action?"
+      ],
+      "injects": [
+        "Their laptop was wiped and returned.",
+        "Their personal email was used in access logs.",
+        "Internal comms express concern about 'Big Brother' overreach."
+      ],
+      "facilitator": {
+        "notes": "Balance privacy with corporate protection. Consider precedent.",
+        "scoring": "✓ Legal involved early.\n✓ Forensic review scoped.\n✗ HR pushes back on any investigation."
+      }
+    },
+    {
+      "narrative": "🕒 1:00 PM: The security team confirms the ex-employee uploaded several confidential files to a personal drive.",
+      "prompts": [
+        "Do you notify your board?",
+        "Do you contact the ex-employee or their new employer?",
+        "Is this breach reportable?"
+      ],
+      "injects": [
+        "Competitor is a publicly known rival.",
+        "Some exfiltrated data includes customer usage analytics.",
+        "PR team is asking if this could go public."
+      ],
+      "facilitator": {
+        "notes": "Discuss legal vs strategic implications. Don’t assume confrontation is the only path.",
+        "scoring": "✓ Legal strategy formed.\n✓ Disclosure path debated.\n✗ Escalation without evidence."
+      }
+    },
+    {
+      "narrative": "🕒 2:30 PM: Customer success lead identifies language from the whitepaper in a customer-facing competitor deck.",
+      "prompts": [
+        "Do you involve your customers?",
+        "Do you publicly assert IP theft?",
+        "How do you avoid escalating legal risk?"
+      ],
+      "injects": [
+        "Investor emails asking if IP is protected.",
+        "Slack thread emerges accusing 'paranoia'.",
+        "The CTO is ready to go public."
+      ],
+      "facilitator": {
+        "notes": "Encourage restraint and proper legal framing. Discuss competitive pressures vs risk tolerance.",
+        "scoring": "✓ Customer messaging debated.\n✓ PR and legal alignment.\n✗ CTO speaks publicly without approval."
+      }
+    },
+    {
+      "narrative": "🕒 4:00 PM: A formal investigation is launched. The board requests a 2-page summary and action plan.",
+      "prompts": [
+        "What do you disclose?",
+        "What internal changes will you make?",
+        "Do you reassess all recent leavers?"
+      ],
+      "injects": [
+        "CISO suggests red team testing insider scenarios.",
+        "HR proposes post-exit access reviews for past 6 months.",
+        "Board member requests tighter NDA enforcement."
+      ],
+      "facilitator": {
+        "notes": "Close with organizational learning and systemic prevention, not individual blame.",
+        "scoring": "✓ Lifecycle controls improved.\n✓ Board given actionable plan.\n✗ Focus remains only on single employee."
+      }
+    }
+  ]
+}

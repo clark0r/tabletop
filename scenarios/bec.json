@@ -1,0 +1,154 @@
+{
+  "tabletop": "Business Email Compromise (BEC)",
+  "title": "Business Email Compromise (BEC)",
+  "description": "An executive email account is used to conduct fraudulent wire transfers and access sensitive communications.",
+  "objectives": "Contain the threat, prevent financial loss, investigate communications exposure, and manage internal/external trust.",
+  "participants": [
+    "CEO / COO",
+    "CFO",
+    "General Counsel",
+    "CISO",
+    "CTO",
+    "VP of HR",
+    "PR Director"
+  ],
+  "narrative_intro": "It starts quietly. A member of the finance team flags a wire request that seems… off. It’s from the CFO’s real email, addressed to the right people, but the language is unusually terse. The request is to transfer $325,000 to a new vendor in Singapore.\n\nWithin minutes, it becomes clear: the CFO’s account has been compromised. And they aren’t alone.\n\nIT security discovers login activity to the CFO’s Microsoft 365 account from a foreign IP in Ukraine. Rules have been added to forward emails silently. The account was used to message both finance and legal. There’s no evidence of malware on the device — this was a cloud-only compromise.\n\nSome money has already been transferred. The attacker may have had access for over a week.\n\nThis exercise simulates a high-trust business process compromise. It explores leadership alignment on fraud handling, internal trust, legal exposure, and strategic response in a sensitive, non-technical breach.",
+  "stages": [
+    {
+      "narrative": "🕒 10:15 AM: Finance flags a suspicious wire request from the CFO's actual email address.",
+      "prompts": [
+        "How do you verify legitimacy?",
+        "Do you stop all outbound payments?",
+        "Who do you inform first?"
+      ],
+      "injects": [
+        "CFO is on a flight and unreachable.",
+        "The account is protected by SSO, but not by MFA.",
+        "Email headers show login from Ukraine."
+      ],
+      "facilitator": {
+        "notes": "Look for quick verification protocols and escalation to security. Encourage inclusion of finance, legal, and IT in early decision-making.",
+        "scoring": "✓ Finance escalation recognized.\n✓ SSO/MFA gaps identified.\n✗ Failed to confirm with CFO before reacting."
+      }
+    },
+    {
+      "narrative": "🕒 10:45 AM: IT confirms the CFO's account was accessed externally, and forwarding rules were added to monitor financial and legal comms.",
+      "prompts": [
+        "What information may have been exposed?",
+        "Do you notify internal teams now?",
+        "Do you notify your bank or legal counsel?"
+      ],
+      "injects": [
+        "A previous wire request was completed yesterday.",
+        "Vendor list and M&A discussions were accessible.",
+        "Multiple execs used email to share sensitive documents."
+      ],
+      "facilitator": {
+        "notes": "Push on understanding the scope of non-technical exposure — contract drafts, legal positioning, etc.",
+        "scoring": "✓ Legal involvement initiated.\n✓ Communication risk acknowledged.\n✗ Only technical logs reviewed."
+      }
+    },
+    {
+      "narrative": "🕒 11:15 AM: PR lead receives a press inquiry asking if the company has suffered a breach.",
+      "prompts": [
+        "Do you respond now or wait?",
+        "Do you confirm an incident?",
+        "Do you inform staff or hold back?"
+      ],
+      "injects": [
+        "The wire recipient bank asks if the funds were fraudulent.",
+        "Legal prepares a disclosure memo for internal use.",
+        "CFO is back online and furious about the incident."
+      ],
+      "facilitator": {
+        "notes": "Encourage tight coordination between legal, PR, and leadership. Watch for premature disclosure or poor message alignment.",
+        "scoring": "✓ Coordinated internal messaging.\n✓ External response routed through PR.\n✗ Conflicting or emotional public comments."
+      }
+    },
+    {
+      "narrative": "🕒 12:30 PM: Bank confirms partial recovery of funds is possible if formally requested immediately.",
+      "prompts": [
+        "Do you request a freeze or reverse the transfer?",
+        "Who authorizes this?",
+        "What legal steps are required?"
+      ],
+      "injects": [
+        "Legal prepares affidavit for the bank.",
+        "CFO wants to take public responsibility in all-hands.",
+        "A customer emails asking if their data is affected."
+      ],
+      "facilitator": {
+        "notes": "Explore who has the authority to act fast. Examine how the team balances legal precision with urgency.",
+        "scoring": "✓ Fast legal response initiated.\n✓ Chain of authority clear.\n✗ Delays due to confusion or overcaution."
+      }
+    },
+    {
+      "narrative": "🕒 2:00 PM: Internal review confirms the attacker had inbox access for at least 9 days.",
+      "prompts": [
+        "What information could be considered privileged?",
+        "Do you notify your board?",
+        "Is this a material event?"
+      ],
+      "injects": [
+        "Some files discussed litigation strategy.",
+        "Access to pre-release financial results was possible.",
+        "Board meeting minutes were attached in one thread."
+      ],
+      "facilitator": {
+        "notes": "Raise the stakes: this isn’t just a fraud case — it's strategic data exposure. Engage board-level framing.",
+        "scoring": "✓ Privileged info identified.\n✓ Board informed.\n✗ Failure to consider broader risk implications."
+      }
+    },
+    {
+      "narrative": "🕒 3:30 PM: The attacker attempts to contact another exec with a fake invoice.",
+      "prompts": [
+        "Is this part of a broader phishing campaign?",
+        "Do you disable all high-privilege accounts?",
+        "Do you begin company-wide MFA enforcement?"
+      ],
+      "injects": [
+        "CISO proposes emergency access review.",
+        "PR receives follow-up from another journalist.",
+        "Slack thread of employees speculating on breach begins trending internally."
+      ],
+      "facilitator": {
+        "notes": "Push to treat this as an ongoing threat, not a one-time breach. Look for broader controls and communication planning.",
+        "scoring": "✓ Access review initiated.\n✓ MFA enforcement accelerated.\n✗ Overfocus on single user account."
+      }
+    },
+    {
+      "narrative": "🕒 4:30 PM: Investigation reveals that multiple inboxes may have been scanned using forwarding rules.",
+      "prompts": [
+        "Do you review all executive inboxes?",
+        "Do you audit historical mail rules?",
+        "Do you notify affected stakeholders?"
+      ],
+      "injects": [
+        "HR inbox was one of the compromised accounts.",
+        "A key partner is informed about potential exposure.",
+        "A third-party vendor admits their credentials were reused."
+      ],
+      "facilitator": {
+        "notes": "Shift toward broader impact mitigation and third-party communication.",
+        "scoring": "✓ Full inbox audit triggered.\n✓ Vendor risk considered.\n✗ Delayed notification to affected stakeholders."
+      }
+    },
+    {
+      "narrative": "🕒 6:00 PM: Recovery is underway. Legal and leadership begin preparing internal write-ups and regulator documentation.",
+      "prompts": [
+        "What permanent changes will be made to prevent this?",
+        "How will you restore trust with stakeholders?",
+        "Who owns long-term follow-up?"
+      ],
+      "injects": [
+        "Security team proposes permanent geo-restrictions.",
+        "New secure communication protocol recommended for execs.",
+        "CEO asks for a concise incident summary by morning."
+      ],
+      "facilitator": {
+        "notes": "Close with cultural and technical improvements, and lessons for future leadership handling.",
+        "scoring": "✓ Defined next steps and owners.\n✓ Clear message on changes.\n✗ No documentation or accountability."
+      }
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Incident Response Tabletop</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+    };
+  </script>
+</head>
+<body class="bg-gray-900 text-gray-100">
+  <div class="max-w-4xl mx-auto p-6 min-h-screen flex flex-col justify-between">
+
+    <header>
+      <h1 class="text-3xl font-bold mb-4 text-white">Incident Response Tabletop</h1>
+
+      <!-- Progress bar -->
+      <div id="progress-container" class="w-full mb-4 hidden">
+        <div class="flex justify-between items-center mb-1 text-sm text-gray-300">
+          <span id="progress-label">Stage 0 of 0</span>
+        </div>
+        <div class="w-full h-3 bg-gray-700 rounded overflow-hidden">
+          <div id="progress-bar" class="h-full transition-all duration-300" style="width: 0%;"></div>
+        </div>
+      </div>
+
+      <!-- Role selection -->
+      <div id="mode-selection" class="mt-4 space-y-2">
+        <p class="text-gray-200">Select your role:</p>
+        <button onclick="selectMode('participant')" class="px-4 py-2 bg-blue-600 text-white rounded">Participant</button>
+        <button onclick="selectMode('facilitator')" class="px-4 py-2 bg-purple-600 text-white rounded">Facilitator</button>
+      </div>
+    </header>
+
+    <main id="main-content" class="flex-grow mt-6 space-y-4">
+      <!-- Scenario content will load here -->
+    </main>
+
+    <footer class="flex justify-between mt-6">
+      <button id="prev-btn" onclick="goToPreviousStage()" class="px-4 py-2 bg-gray-700 text-white rounded hidden">← Previous</button>
+      <button id="home-btn" onclick="goHome()" class="px-4 py-2 bg-gray-700 text-white rounded hidden">🏠 Home</button>
+      <button id="next-btn" onclick="goToNextStage()" class="px-4 py-2 text-white rounded hidden ml-auto">Next →</button>
+    </footer>
+
+  </div>
+
+  <script src="app.js" type="module"></script>
+</body>
+</html>

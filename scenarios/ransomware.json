@@ -1,0 +1,157 @@
+{
+  "tabletop": "Ransomware",
+  "title": "Ransomware Attack",
+  "description": "A major ransomware attack disrupts key systems. Executive leadership must respond under pressure.",
+  "objectives": "Maintain business continuity, scope system impact, manage communications, assess ransom payment strategy, and make executive response decisions under uncertainty.",
+  "participants": [
+    "CEO / COO",
+    "CISO",
+    "CFO",
+    "CTO / CIO",
+    "Legal Counsel",
+    "VP of Communications",
+    "Head of Infrastructure"
+  ],
+  "narrative_intro": "It's a regular Tuesday morning. The office is quiet, Slack is lighting up with normal chatter, and the week’s projects are in full swing. But within the hour, something changes.\n\nAn executive assistant reports that they can’t access financial spreadsheets. Shortly after, IT helpdesk gets flooded with tickets — files won't open, and strange filenames are appearing across departments.\n\nThen it hits. A text file appears on dozens of systems: 'READ_ME_TO_DECRYPT.txt'. A ransom note.\n\nIt’s unclear how widespread the issue is. There are no automated alerts yet. In the next few hours, the executive team will need to make decisions that affect operations, legal exposure, employee confidence, public reputation, and possibly the future of the company.\n\nThis exercise simulates the pressure of an evolving ransomware incident. You will need to decide how to communicate internally and externally, when to escalate, how to approach ransom demands, and how to restore trust in the business. This is a leadership challenge as much as a technical one.",
+  "stages": [
+    {
+      "narrative": "🕒 8:10 AM: CFO's assistant reports files are unreadable. A note appears: 'READ_ME_TO_DECRYPT.txt'.",
+      "prompts": [
+        "Who do you inform first?",
+        "What initial actions do you take?",
+        "Is this a crisis yet, or still uncertain?"
+      ],
+      "injects": [
+        "Slack chatter starts to spread screenshots of the ransom note.",
+        "Finance lead emails the exec team: 'Is this real ransomware?'",
+        "IT support escalates: 4 more users now report the same issue."
+      ],
+      "facilitator": {
+        "notes": "Encourage early recognition of severity. Look for escalation to CISO and security teams. Prompt discussion on containment vs validation.",
+        "scoring": "✓ Immediate escalation of the issue.\n✓ Involvement of IT/security leadership.\n✗ Downplaying severity or blaming end users."
+      }
+    },
+    {
+      "narrative": "🕒 8:45 AM: IT confirms ransomware. Laptops display ransom demand. File servers are encrypted.",
+      "prompts": [
+        "How do you confirm the scope of impact?",
+        "Do you notify your legal team or the board?",
+        "Who needs to be in the war room?",
+        "How do you coordinate comms?"
+      ],
+      "injects": [
+        "'Your files will be published unless paid in 72 hours.'",
+        "Email systems are now sluggish and showing sync errors.",
+        "Someone from the press has emailed PR requesting a statement."
+      ],
+      "facilitator": {
+        "notes": "This is the moment the incident becomes clearly material. Look for legal involvement and securing communications channels.",
+        "scoring": "✓ Legal is notified.\n✓ Creation of a formal incident response channel.\n✗ No clear ownership or conflicting instructions."
+      }
+    },
+    {
+      "narrative": "🕒 9:15 AM: Legal, compliance, and security leadership have convened. IT is attempting to isolate affected hosts.",
+      "prompts": [
+        "Who coordinates overall response?",
+        "Do you notify law enforcement?",
+        "Do you invoke cyber insurance?"
+      ],
+      "injects": [
+        "Insurance requires notification within 24 hours to qualify for coverage.",
+        "Suspected entry point: compromised credentials for a vendor account.",
+        "Some backups may have been compromised."
+      ],
+      "facilitator": {
+        "notes": "Focus on decision hierarchy. Who owns this incident? Who communicates on behalf of the company?",
+        "scoring": "✓ IR owner identified.\n✓ Cyber insurance thread activated.\n✗ Engineering leads communication instead of security/legal."
+      }
+    },
+    {
+      "narrative": "🕒 10:30 AM: Ransom escalates to 50 BTC. Attackers release sample files as proof of data theft.",
+      "prompts": [
+        "Do you consider payment?",
+        "Do you negotiate?",
+        "Who makes the final decision?",
+        "What will you communicate to employees and customers?"
+      ],
+      "injects": [
+        "Released files include internal financial data.",
+        "Attackers establish a Tor-based negotiation channel.",
+        "Board member privately asks: 'Shouldn't we just pay?'"
+      ],
+      "facilitator": {
+        "notes": "Encourage discussion of payment consequences — legal, ethical, operational.",
+        "scoring": "✓ Clear stance on ransom payment.\n✓ Decision with legal + insurance input.\n✗ Impulsive agreement to pay ransom."
+      }
+    },
+    {
+      "narrative": "🕒 11:45 AM: Partial restores are underway. Some systems can be rebuilt from backups. Others remain offline. Customers begin noticing disruptions.",
+      "prompts": [
+        "What is the recovery priority?",
+        "Do you notify customers now?",
+        "How do you message without causing panic?",
+        "What is your confidence level in restored systems?"
+      ],
+      "injects": [
+        "Customer service sees a spike in inquiries.",
+        "Finance system remains offline and payroll is due.",
+        "Internal Slack channels are full of speculation."
+      ],
+      "facilitator": {
+        "notes": "Stress transparency vs panic tradeoffs. Push on responsible communication.",
+        "scoring": "✓ Customer comms drafted.\n✓ Prioritization of critical services.\n✗ Messaging minimized or misleading."
+      }
+    },
+    {
+      "narrative": "🕒 1:30 PM: Internal forensic findings confirm attackers likely exfiltrated employee compensation data.",
+      "prompts": [
+        "Is this a privacy breach?",
+        "Do you have a regulatory obligation to disclose?",
+        "Does this change who you notify externally?"
+      ],
+      "injects": [
+        "Legal identifies possible GDPR/CCPA implications.",
+        "HR requests guidance on messaging to staff.",
+        "Union representative asks for a formal disclosure."
+      ],
+      "facilitator": {
+        "notes": "This stage introduces privacy implications. Prompt thinking around regulatory response.",
+        "scoring": "✓ GDPR/CCPA considered.\n✓ HR informed.\n✗ Avoiding regulatory obligations."
+      }
+    },
+    {
+      "narrative": "🕒 3:15 PM: Media outlets begin posting articles suggesting a ransomware event at your company.",
+      "prompts": [
+        "Do you respond publicly?",
+        "Do you confirm or deny?",
+        "What tone do you take?"
+      ],
+      "injects": [
+        "Journalist calls PR for comment.",
+        "A leak reveals partial incident information.",
+        "Stock fluctuations or internal morale concerns emerge."
+      ],
+      "facilitator": {
+        "notes": "This stage tests PR strategy and message discipline. Leaders must stay aligned.",
+        "scoring": "✓ Unified public messaging.\n✓ Avoided speculation.\n✗ Leaking unverified details."
+      }
+    },
+    {
+      "narrative": "🕒 4:45 PM: Restore operations is underway, but full stability will require days. Execs prepare the internal and board postmortem.",
+      "prompts": [
+        "What are the core lessons?",
+        "What changes must be implemented?",
+        "What should appear in the board report?"
+      ],
+      "injects": [
+        "Security proposes MFA expansion and privileged access overhaul.",
+        "IT requests expanded budget for recovery and future mitigation.",
+        "General Counsel asks for a final documented incident timeline."
+      ],
+      "facilitator": {
+        "notes": "Encourage actionable organizational learning — not just blaming IT.",
+        "scoring": "✓ Concrete follow-up actions.\n✓ Ownership assigned.\n✗ No accountability or long-term improvement commitments."
+      }
+    }
+  ]
+}

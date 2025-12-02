@@ -1,0 +1,155 @@
+{
+  "tabletop": "CI/CD Platform and Git Repository Compromise",
+  "title": "CI/CD & Source Code Breach",
+  "description": "An attacker gains access to your CI platform and possibly your Git repositories, triggering a serious software supply chain breach.",
+  "objectives": "Maintain customer trust, verify build integrity, scope code exposure, restore security of development pipelines.",
+  "participants": [
+    "CEO / COO",
+    "CTO / VP Engineering",
+    "CISO",
+    "General Counsel",
+    "PR Director",
+    "Head of DevSecOps",
+    "Engineering Director"
+  ],
+  "narrative_intro": "You’re mid-sprint in a normal week. Engineering is pushing hard toward a product milestone. A staging deployment goes out overnight — but no one owns the commit. A CI job ran using an unknown token. DevOps starts digging.\n\nWithin the hour, it becomes clear: your CI pipeline has been compromised. Logs show access to build artifacts, secret keys, and Git repositories. One production image may have been tampered with. Worse, there's no definitive way to prove which builds are clean. The attacker may have introduced backdoors — and your customers are already running the code.\n\nCustomers trust your software. Partners embed your binaries. Some of your code may even run in regulated environments. The software factory is broken. How do you lead through this?",
+  "stages": [
+    {
+      "narrative": "🕒 7:40 AM: Engineer reports an unusual job ran in CI using an old contractor token.",
+      "prompts": [
+        "Who investigates first?",
+        "Do you immediately disable CI pipelines?",
+        "Do you notify leadership now or wait?"
+      ],
+      "injects": [
+        "Job originated from unknown IP.",
+        "Triggered manually via API.",
+        "Slack thread begins suggesting possible breach."
+      ],
+      "facilitator": {
+        "notes": "Watch for recognition of incident severity vs hesitation for confirmation.",
+        "scoring": "✓ Prompt escalation.\n✓ CI access revoked.\n✗ Incident downplayed as a glitch."
+      }
+    },
+    {
+      "narrative": "🕒 8:30 AM: IT confirms CI was accessed externally. Git clone activity on private repos detected.",
+      "prompts": [
+        "How do you scope compromise?",
+        "Do you assume source code is fully compromised?",
+        "Do you rotate all CI secrets?"
+      ],
+      "injects": [
+        "Repo containing proprietary algorithm cloned.",
+        "AWS credentials and tokens exposed.",
+        "Build artifact signatures inconsistent."
+      ],
+      "facilitator": {
+        "notes": "Push for conservative assumption: full code exposure.",
+        "scoring": "✓ Secret rotation initiated.\n✓ Engineering buy-in.\n✗ Minimal scope assumed."
+      }
+    },
+    {
+      "narrative": "🕒 9:30 AM: Integrity of recent production builds is in question.",
+      "prompts": [
+        "Do you roll back deployments?",
+        "Do you notify customers?",
+        "Do you freeze all releases?"
+      ],
+      "injects": [
+        "Some artifacts cannot be reproduced from source.",
+        "Customer flags unusual behavior in your binary.",
+        "Engineering requests release exception for urgent bugfix."
+      ],
+      "facilitator": {
+        "notes": "Fail-safe approach: freeze and verify.",
+        "scoring": "✓ Releases paused.\n✓ Code signing reviewed.\n✗ Production builds continued unchecked."
+      }
+    },
+    {
+      "narrative": "🕒 10:45 AM: Customer asks why binary fingerprint mismatches previous builds.",
+      "prompts": [
+        "Do you admit ongoing investigation?",
+        "Do you downplay or emphasize?",
+        "How do you maintain trust?"
+      ],
+      "injects": [
+        "Major enterprise customer requests signed statement.",
+        "Support requests messaging guidance.",
+        "CI vendor confirms attacker used leaked personal token."
+      ],
+      "facilitator": {
+        "notes": "Emphasize credibility — never lie to customers. Explore whether they consider disclosure an obligation or a gesture of trust.",
+        "scoring": "✓ Customer notified.\n✓ Technical review included in response.\n✗ Denial or evasive communication."
+      }
+    },
+    {
+      "narrative": "🕒 12:15 PM: Secret rotation engaged. CI access revoked. Code integrity review begins.",
+      "prompts": [
+        "Do you require clean-room rebuild?",
+        "Do you reissue signed binaries?",
+        "How do you track internal communications?"
+      ],
+      "injects": [
+        "Engineer discovers experimental feature branch exposed.",
+        "Legal drafts disclosure for customers.",
+        "Cyber insurance asks for timeline and severity estimate."
+      ],
+      "facilitator": {
+        "notes": "Push for methodical reconstruction and security-by-assurance.",
+        "scoring": "✓ Clean builds confirmed.\n✓ Dev/test environments reset.\n✗ CI pipelines reused without verification."
+      }
+    },
+    {
+      "narrative": "🕒 2:00 PM: Board requests detailed briefing.",
+      "prompts": [
+        "How do you present the risk?",
+        "Do you lead with technical or business framing?",
+        "What commitments do you make?"
+      ],
+      "injects": [
+        "PR recommends cautious external statement.",
+        "CTO asks if any products should be taken offline.",
+        "CRITICAL: attacker attempts another login to CI.",
+        "An extortion email arrives: 'We have your source code. Pay 20 BTC or we leak it publicly tomorrow.'"
+      ],
+      "facilitator": {
+        "notes": "Direct toward unambiguous communication of risk and mitigation. Encourage clarity on ransom position.",
+        "scoring": "✓ Board aligned on narrative.\n✓ Threat actor activity escalated properly.\n✗ Attempt to ignore ransom threat."
+      }
+    },
+    {
+      "narrative": "🕒 3:30 PM: Root cause uncovered — long‑lived CI token stored in repo in 2022.",
+      "prompts": [
+        "How did this persist unnoticed?",
+        "What systemic change should be implemented?",
+        "Who is accountable?"
+      ],
+      "injects": [
+        "Former engineer confirms token was for debugging.",
+        "Security training was optional for engineering staff.",
+        "DevSecOps proposes signing and attestation framework."
+      ],
+      "facilitator": {
+        "notes": "Push for cultural shift AND technical remediation.",
+        "scoring": "✓ CI/CD policy overhaul.\n✓ Team accountability accepted.\n✗ Blame placed on former employees only."
+      }
+    },
+    {
+      "narrative": "🕒 5:00 PM: Reputational and customer implications remain.",
+      "prompts": [
+        "What do you put in the board summary?",
+        "What do you promise to customers?",
+        "What should never be repeated?"
+      ],
+      "injects": [
+        "CEO asks for crisp talking points summary.",
+        "Investor asks if competitive IP was stolen.",
+        "Regulator inquires regarding supply chain risk disclosure."
+      ],
+      "facilitator": {
+        "notes": "Close with reflection on lessons learned, trust restoration, and accountability.",
+        "scoring": "✓ Narrative ready for board.\n✓ Regulator response tracked.\n✗ No documentation of mitigation."
+      }
+    }
+  ]
+}

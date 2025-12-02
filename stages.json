@@ -1,0 +1,82 @@
+{
+  "tabletop": "ransomware",
+  "stages": [
+    {
+      "narrative": "🕒 8:10 AM Monday: The CFO’s assistant reports that files on the finance network drive won’t open. Instead, there’s a note titled 'READ_ME_TO_DECRYPT.txt'. IT support is unsure if this is a technical glitch or malware. Slack chatter is increasing.\n\nNo alerts yet from the SOC.",
+      "prompts": [
+        "Who is informed first?",
+        "What initial action do you recommend?",
+        "How do you keep communications orderly?",
+        "Do you involve the executive team now?"
+      ],
+      "facilitator": "Participants may delay escalation. Observe whether they initiate formal incident response or try to 'wait and see.' A good outcome includes contacting internal security and beginning preliminary coordination."
+    },
+    {
+      "narrative": "🕒 8:40 AM: IT confirms encryption activity on multiple file shares. Several user laptops show ransom notes.\n\nA new note on the shared drive reads: 'Your files are locked. Pay 50 BTC to unlock. 72 hours or data is leaked.'",
+      "prompts": [
+        "How do you confirm this is ransomware?",
+        "What immediate containment steps are possible?",
+        "Do you notify your CISO, legal, or board?",
+        "What public or employee-based messaging is needed?"
+      ],
+      "facilitator": "This is the moment for escalation. Good teams notify the CISO, legal, and executive leadership. Containment discussions may include disconnecting affected systems, disabling accounts, or contacting the IR firm. Note: some execs may prematurely want to 'pay'."
+    },
+    {
+      "narrative": "🕒 1:00 PM: Incident control is being transitioned to an external incident response team. Critical decisions need to be made within the first hour.\n\nLegal and compliance stakeholders should be involved.",
+      "prompts": [
+        "Who has the decision-authority at this stage?",
+        "Who needs to know?",
+        "What is the line of authority to make big calls?",
+        "Where is the line between tech detail and business risk?"
+      ],
+      "facilitator": "This step is about managing incident control, shouldering who owns the response. Get the right executives in the loop early."
+    },
+    {
+      "narrative": "🕒 2:00 PM: Choose to Pay? The ransom demand is estimated to be 45 BTC. The legal team isn’t comfortable with this.\n\nWhere does this lead? What are your executive policies on whether to pay?",
+      "prompts": [
+        "What are the risks in paying?",
+        "Who decides with the final say?",
+        "Can you negotiate?",
+        "What are the long term consequences?"
+      ],
+      "facilitator": "This stage forces executives to grapple with payment decision strategy. Both options have reputational impacts."
+    },
+    {
+      "narrative": "🕒 2:30 PM: This is havoc block time. Media starts reaching the story. The company call centers in an all-hands meeting.",
+      "prompts": [
+        "Do you initiate briefing for the executives?",
+        "What messages are going to the board?",
+        "How will you control the narrative?"
+      ],
+      "facilitator": "This step reveals communication gaps. The board should be aware early. Make space for executives to communicate clearly."
+    },
+    {
+      "narrative": "🕒 2:50 PM: IT is doing forensic stage analysis. A small number of systems were recovered with backups. The external IR firm has been called.",
+      "prompts": [
+        "What did we recover?",
+        "What is required to be upgraded to the board?",
+        "Do we restrict media access, or share updates?"
+      ],
+      "facilitator": "Executives should be wary of false sense of recovery. Focus on recovery mean recreation and update strategy."
+    },
+    {
+      "narrative": "🕒 3:00 PM: The team is satisfied with the result. Stakeholders and legal are assigned followups. Public disclosure may be necessary.",
+      "prompts": [
+        "Who receives the public checklist?",
+        "Who is responsible for public liability?",
+        "What is the board's expectation on recovery?"
+      ],
+      "facilitator": "Focus on liability, response briefing, and whether any additional communication should be made."
+    },
+    {
+      "narrative": "🕒 4:00 PM: Post-incident review begins. Executives are expected to participate. A report will be generated with decisions and recommendations.",
+      "prompts": [
+        "What worked well?",
+        "What decisions slowed down action?",
+        "What needs to change before next time?",
+        "Are there board-level risks that need to be mitigated?"
+      ],
+      "facilitator": "Focus on accountability, lessons learned, and follow-through. This is where risk ownership and exec leadership is reinforced."
+    }
+  ]
+}

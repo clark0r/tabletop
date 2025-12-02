@@ -1,0 +1,32 @@
+[
+  {
+    "id": "ransomware",
+    "title": "Ransomware Attack",
+    "description": "A major ransomware attack disrupts key systems. Executive leadership must respond under pressure.",
+    "file": "ransomware.json"
+  },
+  {
+    "id": "bec",
+    "title": "Business Email Compromise (BEC)",
+    "description": "An executive email account is used to conduct fraudulent wire transfers and access sensitive communications.",
+    "file": "bec.json"
+  },
+  {
+    "id": "ci-compromise",
+    "title": "CI/CD & Source Code Breach",
+    "description": "An attacker gains access to your CI platform and possibly your Git repositories, triggering a serious software supply chain breach.",
+    "file": "ci-compromise.json"
+  },
+  {
+    "id": "cloud-leak",
+    "title": "Cloud Storage Exposure (S3 Leak)",
+    "description": "A misconfigured cloud storage bucket exposes sensitive data to the public internet.",
+    "file": "cloud-leak.json"
+  },
+  {
+    "id": "insider-threat",
+    "title": "Insider Threat & Data Exfiltration",
+    "description": "A trusted employee exfiltrates sensitive documents, resulting in public data exposure and internal fallout.",
+    "file": "insider-threat.json"
+  }
+]

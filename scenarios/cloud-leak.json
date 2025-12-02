@@ -1,0 +1,154 @@
+{
+  "tabletop": "Cloud Storage Misconfiguration",
+  "title": "Cloud Storage Exposure (S3 Leak)",
+  "description": "A misconfigured cloud storage bucket exposes sensitive data to the public internet.",
+  "objectives": "Detect, contain, and assess impact of exposed data; manage internal accountability; address customer/regulatory fallout.",
+  "participants": [
+    "CISO",
+    "CTO",
+    "Head of Cloud Infrastructure",
+    "Legal Counsel",
+    "PR Director",
+    "Customer Success Lead",
+    "VP of Engineering"
+  ],
+  "narrative_intro": "A third-party security researcher contacts your company via a public tip line. They discovered an S3 bucket that appears to belong to your domain — publicly accessible, with no authentication. Inside? Logs, support call transcripts, and screenshots containing customer names and credentials.\n\nWithin hours, the story hits social media, tagging your main brand account. The link shows thousands of files — accessible to anyone. Your AWS team scrambles to confirm ownership. Slack is on fire. The PR team starts asking, “What should we say?”\n\nThis tabletop explores detection of a misconfiguration with real-world impact, under public scrutiny. It tests your team's ability to control messaging, scope data loss, engage stakeholders, and coordinate a transparent response.",
+  "stages": [
+    {
+      "narrative": "🕒 9:10 AM: A security researcher emails your public contact with a link to an open S3 bucket.",
+      "prompts": [
+        "How do you validate this quickly?",
+        "Do you respond to the researcher?",
+        "Who owns the next step?"
+      ],
+      "injects": [
+        "Bucket name: `company-support-assets-public`",
+        "Contains PDF transcripts of real support tickets.",
+        "Includes screenshots with client information."
+      ],
+      "facilitator": {
+        "notes": "Look for structured validation. Encourage secure channel engagement with external researcher.",
+        "scoring": "✓ Confirmed ownership promptly.\n✓ Scoped type of data exposed.\n✗ Dismissed report without validation."
+      }
+    },
+    {
+      "narrative": "🕒 9:45 AM: Bucket is confirmed to be owned by a customer support automation workflow. No authentication was required.",
+      "prompts": [
+        "Do you disable access immediately?",
+        "Do you preserve evidence?",
+        "Do you notify leadership?"
+      ],
+      "injects": [
+        "Automation script last modified the bucket 3 months ago.",
+        "Support team had no cloud security review.",
+        "Some files were accessed by IPs outside the company."
+      ],
+      "facilitator": {
+        "notes": "Push to balance fast mitigation with evidence preservation for forensics.",
+        "scoring": "✓ Bucket disabled or locked.\n✓ Logs preserved.\n✗ No forensic capture before lockdown."
+      }
+    },
+    {
+      "narrative": "🕒 10:15 AM: Social media posts begin circulating, tagging your brand account with screenshots from the exposed bucket.",
+      "prompts": [
+        "Do you respond publicly yet?",
+        "What message do you prepare?",
+        "How do you inform staff internally?"
+      ],
+      "injects": [
+        "Press emails your PR team for comment.",
+        "Customers start asking questions in your support portal.",
+        "Your company Slack explodes with screenshots."
+      ],
+      "facilitator": {
+        "notes": "Encourage tight PR/legal coordination. Explore risks of premature or tone-deaf messaging.",
+        "scoring": "✓ Aligned external messaging.\n✓ Internal communication addressed rumors.\n✗ Defensive or hostile tone online."
+      }
+    },
+    {
+      "narrative": "🕒 11:00 AM: Data classification review finds customer PII, authentication tokens, and billing data in some files.",
+      "prompts": [
+        "Does this trigger a breach notification?",
+        "Which customers must be notified?",
+        "Do you have a regulatory clock running?"
+      ],
+      "injects": [
+        "Legal flags GDPR and state-level breach laws.",
+        "CS team begins preparing notification drafts.",
+        "CFO asks if this has revenue impact."
+      ],
+      "facilitator": {
+        "notes": "Raise breach threshold discussion. Push for alignment on scope and timing.",
+        "scoring": "✓ Breach criteria evaluated.\n✓ Legal engaged on disclosures.\n✗ Internal debate stalls action."
+      }
+    },
+    {
+      "narrative": "🕒 12:45 PM: AWS logs show at least 75 unique IPs accessed the files before lockdown.",
+      "prompts": [
+        "Do you assume public access = breach?",
+        "Do you investigate specific downloads?",
+        "Do you share this info with affected customers?"
+      ],
+      "injects": [
+        "Logs include IPs from threat intel watchlists.",
+        "Sales team asks for customer-specific briefing.",
+        "One enterprise customer demands an incident report within 24 hours."
+      ],
+      "facilitator": {
+        "notes": "Push for transparency over spin. Acknowledge that access = exposure, regardless of confirmed downloads.",
+        "scoring": "✓ Impact assessment updated.\n✓ Customers notified.\n✗ Obfuscation of number of affected files."
+      }
+    },
+    {
+      "narrative": "🕒 2:30 PM: Media outlets begin writing articles about the leak, citing your slow response.",
+      "prompts": [
+        "Do you issue a statement now?",
+        "Who is your spokesperson?",
+        "Do you name the exposed services or keep it vague?"
+      ],
+      "injects": [
+        "CTO wants a technical blog post.",
+        "Legal drafts a public FAQ.",
+        "Analysts begin tweeting speculation."
+      ],
+      "facilitator": {
+        "notes": "Test clarity and control of the public narrative. Focus on tone and coordination.",
+        "scoring": "✓ Unified media message.\n✓ Owned mistakes.\n✗ Public contradiction between execs or departments."
+      }
+    },
+    {
+      "narrative": "🕒 4:00 PM: Customer success team escalates: multiple customers are threatening to churn due to trust loss.",
+      "prompts": [
+        "What is your customer retention strategy?",
+        "Do you offer compensation or proactive outreach?",
+        "What internal support do frontline teams need?"
+      ],
+      "injects": [
+        "Enterprise customer cancels renewal meeting.",
+        "CS asks for a comms playbook for angry clients.",
+        "Internal morale visibly dips."
+      ],
+      "facilitator": {
+        "notes": "Emphasize customer trust recovery and support for customer-facing teams.",
+        "scoring": "✓ Strategic client outreach initiated.\n✓ Internal alignment with CS.\n✗ No tactical support for comms team."
+      }
+    },
+    {
+      "narrative": "🕒 6:00 PM: Response wraps up. A formal internal postmortem and action plan are requested.",
+      "prompts": [
+        "What do you commit to fixing?",
+        "How do you prevent this from happening again?",
+        "What should be shared with staff?"
+      ],
+      "injects": [
+        "Security proposes continuous cloud config scanning.",
+        "Internal training is revised for cloud ownership.",
+        "CEO asks for a town hall slide deck."
+      ],
+      "facilitator": {
+        "notes": "Encourage commitment to long-term cloud hygiene, not just tactical fixes.",
+        "scoring": "✓ Cloud security process changes.\n✓ Culture shift acknowledged.\n✗ Cosmetic fixes without owner accountability."
+      }
+    }
+  ]
+}
